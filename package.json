@@ -2,12 +2,13 @@
   "name": "billimanjaro",
   "version": "0.0.1",
   "description": "A nodejs based billing system",
-  "main": "src/index.js",
+  "main": "server.js",
   "engines": {
-    "node": ">= 0.12"
+    "node": ">= 5.9"
   },
   "scripts": {
-    "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec --recursive && if [ \"$CI\" = \"true\" ]; then cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js; fi && rm -rf ./coverage"
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec --recursive && if [ \"$CI\" = \"true\" ]; then cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js; fi && rm -rf ./coverage",
+    "start:api": "node src/api/index.js"
   },
   "config": {
     "account_port": 8080,
@@ -33,22 +34,28 @@
   "homepage": "https://github.com/billimanjaro/billimanjaro#readme",
   "devDependencies": {
     "bondjs": "^2.0.0",
-    "coveralls": "^2.11.4",
-    "istanbul": "^0.3.19",
-    "mocha": "^2.3.2",
-    "mocha-eslint": "^1.0.0",
+    "coveralls": "^2.11.9",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.4.5",
+    "mocha-eslint": "^2.0.2",
     "mocha-istanbul": "^0.2.0",
-    "proxyquire": "^1.7.1",
-    "pre-commit": "^1.1.1"
+    "proxyquire": "^1.7.4",
+    "pre-commit": "^1.1.2"
   },
   "dependencies": {
-    "consul": "^0.18.0",
-    "express": "^4.13.3",
-    "http-status": "^0.2.0",
-    "lodash-template-tm": "0.0.1",
-    "morgan": "^1.6.1",
-    "request": "^2.61.0",
-    "stripe": "^3.7.1"
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "http-status": "^0.2.1",
+    "jsonwebtoken": "^5.7.0",
+    "knex": "^0.10.0",
+    "morgan": "^1.7.0",
+    "object-resolve-path": "^1.1.0",
+    "passport": "^0.3.2",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-jwt": "^2.0.0",
+    "request": "^2.69.0",
+    "sqlite3": "^3.1.2",
+    "stripe": "^4.5.0"
   },
   "pre-commit": [
     "test"
