@@ -1,11 +1,16 @@
-var log = require('util').debuglog('api');
-var express = require('express');
-var morgan = require('morgan');
+var express = require('express'),
+	morgan = require('morgan'),
+	log = require('util').debuglog('api')
+;
 
 var app = module.exports = express();
 app.use(morgan('dev'));
 
-app.use('/v1', require('./v1/routes'));
+var api = express.Router();
+app.use('/v1', api);
 
-log('Starting api server on port ' + process.env.port);
-app.listen(process.env.port);
+var auth = require('./auth')(api);
+require('./init')(api, auth);
+
+log('Starting api server on port ' + process.env.PORT);
+app.listen(process.env.PORT);
